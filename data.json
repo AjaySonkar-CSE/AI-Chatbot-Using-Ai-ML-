@@ -1,0 +1,47 @@
+{
+  "name": "Ajay Kumar Sonkar",
+  "title": "Machine Learning Engineer",
+  "location": "Raipur, India",
+  "contact": {
+    "email": "you@example.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "github": "https://github.com/yourusername"
+  },
+  "about": "Short bio: 2-3 lines about you, skills and focus.",
+  "skills": ["Python", "Kotlin", "Flask", "ML", "Data Visualisation"],
+  "projects": [
+    {
+      "id": "p1",
+      "name": "Stock Price Prediction",
+      "summary": "Linear regression based stock predictor with EMA & volume visualization.",
+      "technologies": ["Python", "Flask", "Pandas", "Matplotlib"],
+      "link": "https://github.com/...",
+      "year": 2025
+    }
+  ],
+  "experience": [
+    {
+      "role": "Intern",
+      "company": "ABC Tech",
+      "duration": "Jun 2024 - Aug 2024",
+      "details": "Worked on data pipelines and model evaluation."
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech Computer Science",
+      "college": "XYZ College",
+      "year": 2025
+    }
+  ],
+  "faq": [
+    {
+      "q": "Tumhara main project kya hai?",
+      "a": "Mera main project Stock Price Prediction hai..."
+    }
+  ],
+  "misc": {
+    "hobbies": ["Photography", "Travel"],
+    "languages": ["Hindi", "English"]
+  }
+}

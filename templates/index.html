@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Kumar Sonkar - Portfolio AI Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --bg-light: #ffffff;
+      --bg-dark: #0f172a;
+      --surface-light: #f8fafc;
+      --surface-dark: #1e293b;
+      --text-light: #0f172a;
+      --text-dark: #f1f5f9;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+      --glass-light: rgba(255, 255, 255, 0.1);
+      --glass-dark: rgba(15, 23, 42, 0.8);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+      color: var(--text-light);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body.dark {
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+      color: var(--text-dark);
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 900px;
+      height: 85vh;
+      background: var(--glass-light);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    body.dark .chat-container {
+      background: var(--glass-dark);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+      color: white;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    body.dark .chat-header {
+      background: linear-gradient(135deg, #4338ca, #7c3aed, #db2777);
+    }
+
+    .chat-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .chat-header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    #chat {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      background: var(--surface-light);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    body.dark #chat {
+      background: var(--surface-dark);
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.3s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      max-width: 70%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .message.user .message-content {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      border-bottom-right-radius: 6px;
+    }
+
+    .message.bot .message-content {
+      background: var(--bg-light);
+      color: var(--text-light);
+      border: 1px solid var(--border-light);
+      border-bottom-left-radius: 6px;
+    }
+
+    body.dark .message.bot .message-content {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      border-color: var(--border-dark);
+    }
+
+    .controls {
+      padding: 20px;
+      display: flex;
+      gap: 10px;
+      background: var(--bg-light);
+      border-top: 1px solid var(--border-light);
+    }
+
+    body.dark .controls {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    #msg {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 24px;
+      border: 2px solid var(--border-light);
+      background: var(--surface-light);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    #msg:focus {
+      border-color: var(--primary);
+    }
+
+    body.dark #msg {
+      background: var(--surface-dark);
+      border: 2px solid var(--border-dark);
+      color: var(--text-dark);
+    }
+
+    body.dark #msg:focus {
+      border-color: var(--primary);
+    }
+
+    .send-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .typing {
+      font-style: italic;
+      opacity: 0.7;
+      font-size: 0.9rem;
+      padding: 10px;
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      border-bottom-left-radius: 6px;
+      animation: pulse 1.5s infinite;
+    }
+
+    body.dark .typing {
+      background: var(--bg-dark);
+      border-color: var(--border-dark);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .status {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .status.show {
+      opacity: 1;
+    }
+
+    .status.success {
+      background: rgba(34, 197, 94, 0.9);
+    }
+
+    .status.error {
+      background: rgba(239, 68, 68, 0.9);
+    }
+
+    /* Loading dots animation */
+    .loading-dots {
+      display: inline-block;
+    }
+
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+  </style>
+</head>
+<body>
+  <div class="status" id="statusMsg"></div>
+  
+  <div class="chat-container">
+    <div class="chat-header">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <h1>🚀 Ajay Kumar Sonkar</h1>
+      <p>Portfolio AI Assistant - Ask me anything!</p>
+    </div>
+
+    <div id="chat">
+      <div class="message bot">
+        <div class="message-content">
+          👋 Hello! I'm Ajay's AI Assistant. You can ask me about his skills, projects, or experience.
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input id="msg" type="text" placeholder="Type your message..." autocomplete="off" />
+      <button class="send-btn" id="sendBtn" onclick="sendMsg()">
+        <span id="sendIcon">➤</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let isDarkMode = localStorage.getItem('darkMode') === 'true';
+    let isProcessing = false;
+
+    // Initialize theme
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+      document.getElementById('themeIcon').textContent = '☀️';
+    }
+
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark');
+      document.getElementById('themeIcon').textContent = isDarkMode ? '☀️' : '🌙';
+      localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    // Show status message
+    function showStatus(message, type = 'info', duration = 3000) {
+      const status = document.getElementById('statusMsg');
+      status.textContent = message;
+      status.className = `status show ${type}`;
+      
+      setTimeout(() => {
+        status.classList.remove('show');
+      }, duration);
+    }
+
+    // Optimized message adding
+    function addMessage(text, isUser = false, instant = false) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.className = "message " + (isUser ? "user" : "bot");
+
+      const content = document.createElement("div");
+      content.className = "message-content";
+      content.textContent = text;
+
+      msg.appendChild(content);
+      chat.appendChild(msg);
+      
+      // Smooth scroll with requestAnimationFrame for better performance
+      requestAnimationFrame(() => {
+        chat.scrollTo({
+          top: chat.scrollHeight,
+          behavior: instant ? 'auto' : 'smooth'
+        });
+      });
+    }
+
+    // Optimized typing indicator
+    let typingElement = null;
+    
+    function showTyping() {
+      if (typingElement) return; // Prevent multiple typing indicators
+      
+      const chat = document.getElementById("chat");
+      typingElement = document.createElement("div");
+      typingElement.className = "message bot";
+      
+      const content = document.createElement("div");
+      content.className = "typing";
+      content.innerHTML = '<span class="loading-dots">Bot is typing</span>';
+      
+      typingElement.appendChild(content);
+      chat.appendChild(typingElement);
+      
+      requestAnimationFrame(() => {
+        chat.scrollTo({
+          top: chat.scrollHeight,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    function hideTyping() {
+      if (typingElement) {
+        typingElement.remove();
+        typingElement = null;
+      }
+    }
+
+    // Enhanced send message with better error handling
+    async function sendMsg() {
+      if (isProcessing) return; // Prevent double sending
+      
+      const input = document.getElementById("msg");
+      const sendBtn = document.getElementById("sendBtn");
+      const sendIcon = document.getElementById("sendIcon");
+      const text = input.value.trim();
+
+      if (!text) {
+        input.focus();
+        return;
+      }
+
+      // Set processing state
+      isProcessing = true;
+      input.disabled = true;
+      sendBtn.disabled = true;
+      sendIcon.textContent = "⏳";
+
+      // Add user message immediately
+      addMessage(text, true, true);
+      input.value = "";
+
+      // Show typing with slight delay for better UX
+      setTimeout(showTyping, 100);
+
+      const startTime = Date.now();
+
+      try {
+        // Fetch with timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache"
+          },
+          body: JSON.stringify({ message: text }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+        
+        if (!res.ok) {
+          throw new Error(`Server error: ${res.status} ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        const responseTime = Date.now() - startTime;
+        
+        hideTyping();
+
+        // Add response with slight delay for better UX
+        setTimeout(() => {
+          addMessage(data.reply || "I couldn't understand that. Please try again.");
+          showStatus(`Response received in ${responseTime}ms`, 'success', 2000);
+        }, 200);
+
+      } catch (err) {
+        console.error("Chat error:", err);
+        hideTyping();
+        
+        let errorMessage = "⚠️ Something went wrong. Please try again.";
+        if (err.name === 'AbortError') {
+          errorMessage = "⚠️ Request timeout. Please try again.";
+        } else if (!navigator.onLine) {
+          errorMessage = "⚠️ No internet connection. Please check your connection.";
+        }
+        
+        addMessage(errorMessage);
+        showStatus("Error occurred", 'error', 3000);
+        
+      } finally {
+        // Reset UI state
+        isProcessing = false;
+        input.disabled = false;
+        sendBtn.disabled = false;
+        sendIcon.textContent = "➤";
+        input.focus();
+      }
+    }
+
+    // Enhanced keyboard handling
+    document.getElementById("msg").addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey && !isProcessing) {
+        e.preventDefault();
+        sendMsg();
+      }
+    });
+
+    // Auto-focus input on load
+    window.addEventListener('load', () => {
+      initializeTheme(); // Ensure theme is set correctly
+      document.getElementById('msg').focus();
+    });
+
+    // Handle connection status
+    window.addEventListener('online', () => {
+      showStatus('Connection restored', 'success', 2000);
+    });
+
+    window.addEventListener('offline', () => {
+      showStatus('Connection lost', 'error', 3000);
+    });
+
+    // Performance monitoring (optional - remove in production)
+    if (window.performance && performance.mark) {
+      document.addEventListener('DOMContentLoaded', () => {
+        performance.mark('page-loaded');
+        console.log('📊 Page loaded successfully');
+      });
+    }
+  </script>
+</body>
+</html>
