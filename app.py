@@ -318,7 +318,7 @@ atexit.register(cleanup)
 # ---------------------------
 if __name__ == "__main__":
     print("🚀 Starting Flask app with background history...")
-    print(f"📊 Portfolio data loaded with {len(portfolio)} sections")
+    # print(f"📊 Portfolio data loaded with {len(portfolio)} sections")
     print("📚 History loading in background...")
     
     try:
