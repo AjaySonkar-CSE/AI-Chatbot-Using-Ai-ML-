@@ -455,7 +455,7 @@
         // Add response with slight delay for better UX
         setTimeout(() => {
           addMessage(data.reply || "I couldn't understand that. Please try again.");
-          showStatus(`Response received in ${responseTime}ms`, 'success', 2000);
+         // showStatus(`Response received in ${responseTime}ms`, 'success', 2000);
         }, 200);
 
       } catch (err) {
