@@ -331,3 +331,4 @@ if __name__ == "__main__":
         history_manager.shutdown()
     finally:
         cleanup()
+
