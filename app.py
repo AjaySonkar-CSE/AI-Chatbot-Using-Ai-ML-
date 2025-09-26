@@ -29,7 +29,11 @@ with DATA_PATH.open("r", encoding="utf-8") as f:
     portfolio = json.load(f)
 
 # Initialize Gemini model
-model = genai.GenerativeModel("gemini-1.5-flash")
+# model = genai.GenerativeModel("gemini-1.5-flash")
+
+model = genai.GenerativeModel("gemini-2.5-flash-lite")
+
+# model = genai.GenerativeModel("gemini-1.5-turbo") 
 
 # ---------------------------
 # Background History Manager
@@ -190,12 +194,24 @@ def chat():
         # Get recent context quickly (non-blocking)
         recent_context_str = history_manager.get_recent_context(5)
 
+
+# Tum ek AI chatbot ho jo Ajay Kumar Sonkar ka portfolio represent karta hai.
+# Tum apne bare me sawalon ka jawab Ajay Kumar Sonkar ke taur par doge.
+# Sirf niche diye gaye JSON data ka use karo.
+# Agar jawab JSON me na mile to "tum answer generate karke de do." bolo.
+# 4. Apni taraf se kuch bhi extra add mat karo.
+# 3. Agar sawaal ka jawab JSON me NAHI mile to bas itna hi likho: "Mujhe iska jawab data me nahi mila sorry".
         # Build prompt
         prompt = f"""
 Tum ek AI chatbot ho jo Ajay Kumar Sonkar ka portfolio represent karta hai.
-Tum apne bare me sawalon ka jawab Ajay Kumar Sonkar ke taur par doge.
-Sirf niche diye gaye JSON data ka use karo.
-Agar jawab JSON me na mile to "tum answer generate karke de do." bolo.
+Tumhara kaam hai ki tum user ke sawalon ka jawab sirf niche diye gaye JSON data ka use karke do.
+
+Rules:
+1. Hamesha Ajay Kumar Sonkar ke perspective se jawab do.
+2. Agar sawaal ka jawab JSON data me mil jaye to simple aur clear jawab do.
+3. Tum hamesa english me hi jawab doge.
+4. Agar sawaal ka jawab JSON me NAHI mile to tum jawab create karke de do.
+
 
 Portfolio Data:
 {json.dumps(portfolio, indent=2, ensure_ascii=False)}

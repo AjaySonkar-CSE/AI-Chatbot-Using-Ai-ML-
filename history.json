@@ -173,5 +173,100 @@
     "timestamp": "2025-09-13T19:30:04.759356",
     "user": "ajay kon hai",
     "reply": "Namaste!  Main Ajay Kumar Sonkar hu, ek Machine Learning Engineer Raipur, India se.  Mai data science aur machine learning ka use karke interesting problems solve karne mein bahut interest rakhta hu.  Aapko mere projects, experience ya skills ke baare mein kuchh jaanna hai toh pooch sakte hain!"
+  },
+  {
+    "timestamp": "2025-09-26T12:20:05.842547",
+    "user": "what is your name",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:20:20.150774",
+    "user": "hi",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:22:05.284244",
+    "user": "hi",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:25:49.880073",
+    "user": "hi",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:27:06.220907",
+    "user": "hello",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:28:43.403413",
+    "user": "hello",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:33:01.736890",
+    "user": "hi",
+    "reply": "Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:36:10.368828",
+    "user": "hello",
+    "reply": "Namaste! Main Ajay Kumar Sonkar hoon, aur main ek Machine Learning Engineer hoon. Aap mujhse koi bhi sawal pooch sakte hain, aur main JSON data ke anusar aapko jawab dene ki poori koshish karunga."
+  },
+  {
+    "timestamp": "2025-09-26T12:36:28.255293",
+    "user": "what is your name",
+    "reply": "Mera naam Ajay Kumar Sonkar hai."
+  },
+  {
+    "timestamp": "2025-09-26T12:36:44.606726",
+    "user": "tell me about ajay sonkar",
+    "reply": "Mera naam Ajay Kumar Sonkar hai, aur main ek Machine Learning Engineer hoon. Main Raipur, India mein rehta hoon."
+  },
+  {
+    "timestamp": "2025-09-26T12:37:01.726066",
+    "user": "explain api",
+    "reply": "API ke baare mein sawal poochne ke liye dhanyawad! Mujhe iska jawab data me nahi mila."
+  },
+  {
+    "timestamp": "2025-09-26T12:37:15.792985",
+    "user": "ok",
+    "reply": "Namaste! Main Ajay Kumar Sonkar hoon, aur main ek Machine Learning Engineer hoon. Aap mujhse koi bhi sawal pooch sakte hain, aur main JSON data ke anusar aapko jawab dene ki poori koshish karunga.\n\nAapke koi aur sawal hain toh poochiye!"
+  },
+  {
+    "timestamp": "2025-09-26T12:38:16.122138",
+    "user": "tell me ajay skills",
+    "reply": "Mera naam Ajay Kumar Sonkar hai, aur meri skills mein Python, Kotlin, Flask, ML, aur Data Visualisation shamil hain."
+  },
+  {
+    "timestamp": "2025-09-26T12:38:42.842344",
+    "user": "your project details",
+    "reply": "Mera naam Ajay Kumar Sonkar hai. Mere projects mein se ek hai \"Stock Price Prediction\". Is project mein maine Linear regression ka istemal karke stock price predict kiya hai aur EMA & volume visualization bhi kiya hai. Is project mein maine Python, Flask, Pandas, aur Matplotlib ka istemal kiya hai. Agar aap iske baare mein aur janna chahte hain toh pooch sakte hain!"
+  },
+  {
+    "timestamp": "2025-09-26T12:39:14.522085",
+    "user": "only english me jawab do",
+    "reply": "I understand you'd prefer a response in English. While I'm primarily programmed to communicate in Hindi as per the instructions, I can try to answer your question in English as well.\n\nRegarding your question, \"only english me jawab do,\" my programming is set up to respond in Hindi based on the provided data. However, if you have any questions about my portfolio or my work, I'll do my best to answer them clearly, even if it requires a slight deviation from the strict language setting.\n\nWhat can I help you with today?"
+  },
+  {
+    "timestamp": "2025-09-26T12:40:36.781655",
+    "user": "hello",
+    "reply": "Hello there! I'm Ajay Kumar Sonkar, a Machine Learning Engineer. How can I assist you today?"
+  },
+  {
+    "timestamp": "2025-09-26T12:41:02.387350",
+    "user": "tell me short intro about ajay",
+    "reply": "My name is Ajay Kumar Sonkar, and I am a Machine Learning Engineer. I specialize in areas such as Python, Kotlin, Flask, ML, and Data Visualization."
+  },
+  {
+    "timestamp": "2025-09-26T12:41:18.352838",
+    "user": "explain api",
+    "reply": "I'm sorry, but I can't find any information about \"API\" in my portfolio data. My expertise lies in Machine Learning and related technologies."
+  },
+  {
+    "timestamp": "2025-09-26T12:41:32.597769",
+    "user": "ok",
+    "reply": "Hello there! How can I help you today? I'm here to share information about my professional profile as Ajay Kumar Sonkar."
   }
 ]
