@@ -336,9 +336,13 @@ if __name__ == "__main__":
     print("🚀 Starting Flask app with background history...")
     print(f"📊 Portfolio data loaded with {len(portfolio)} sections")
     print("📚 History loading in background...")
-    
+
+
+    import os
+
     try:
-        app.run(debug=False, host='127.0.0.1', port=5000, threaded=True, use_reloader=False)
+        port = int(os.environ.get("PORT", 5000))  # Render ka PORT use kare, default 5000
+        app.run(debug=False, host="0.0.0.0", port=port, threaded=True, use_reloader=False)
     except KeyboardInterrupt:
         print("\n🛑 Shutting down...")
         history_manager.shutdown()
@@ -347,4 +351,16 @@ if __name__ == "__main__":
         history_manager.shutdown()
     finally:
         cleanup()
+
+    
+    # try:
+    #     app.run(debug=False, host='127.0.0.1', port=5000, threaded=True, use_reloader=False)
+    # except KeyboardInterrupt:
+    #     print("\n🛑 Shutting down...")
+    #     history_manager.shutdown()
+    # except Exception as e:
+    #     print(f"❌ Server error: {e}")
+    #     history_manager.shutdown()
+    # finally:
+    #     cleanup()
 
